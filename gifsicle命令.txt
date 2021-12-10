@@ -1,0 +1,29 @@
+GIF信息
+gifsicle --info /Users/zhoujie/Pictures/GIF/tom.gif
+gifsicle --color-info /Users/zhoujie/Pictures/GIF/tom.gif
+gifsicle --extension-info /Users/zhoujie/Pictures/GIF/tom.gif
+gifsicle --size-info /Users/zhoujie/Pictures/GIF/tom.gif
+
+合并GIF
+gifsicle /Users/zhoujie/Pictures/GIF/luffy.gif /Users/zhoujie/Pictures/GIF/solong.gif -o /Users/zhoujie/Pictures/GIF/combine.gif --colors 256
+
+大概是分解GIF吧
+gifsicle -e /Users/zhoujie/Pictures/GIF/luffy.gif -o /Users/zhoujie/Pictures/GIF/explode.gif
+
+尝试缩小 GIF 动画的文件大小，O1,O2,O3
+gifsicle -O -O3 /Users/zhoujie/Pictures/GIF/solong.gif -o /Users/zhoujie/Pictures/GIF/optimize_O3.gif
+
+将每个输出 GIF 中不同颜色的数量减少到 num 或更少,2-256
+gifsicle --colors 18 -V /Users/zhoujie/Pictures/GIF/solong.gif -o /Users/zhoujie/Pictures/GIF/color18.gif
+
+改变图像颜色以减少输出文件的大小，但代价是失真和噪声
+gifsicle --lossy 20 /Users/zhoujie/Pictures/GIF/solong.gif -o /Users/zhoujie/Pictures/GIF/lossy20.gif
+
+从输入图像中删除扩展名
+gifsicle --no-extensions -V /Users/zhoujie/Pictures/GIF/solong.gif -o /Users/zhoujie/Pictures/GIF/no-extensions.gif
+
+黑白抖动，用在人物GIF上还挺帅的
+gifsicle --dither --use-col=bw /Users/zhoujie/Pictures/GIF/solong.gif > /Users/zhoujie/Pictures/GIF/dither.gif
+
+GIF叠加
+gifsicle /Users/zhoujie/Pictures/GIF/solong.gif /Users/zhoujie/Pictures/GIF/luffy.gif | gifsicle > /Users/zhoujie/Pictures/GIF/solong_luffy.gif

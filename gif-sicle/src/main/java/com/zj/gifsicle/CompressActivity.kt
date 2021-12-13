@@ -1,6 +1,8 @@
 package com.zj.gifsicle
 
+import android.app.Activity
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -222,5 +224,13 @@ class CompressActivity : AppCompatActivity() {
     private fun formatFileSize(path: String): String {
         val fileLength = File(path).length()
         return ConvertUtils.byte2FitMemorySize(fileLength, 1)
+    }
+
+    companion object {
+        fun start(activity: Activity, localMedia: LocalMedia) {
+            val intent = Intent(activity, CompressActivity::class.java)
+            intent.putExtra("local_media", localMedia)
+            activity.startActivity(intent)
+        }
     }
 }

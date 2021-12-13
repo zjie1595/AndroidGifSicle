@@ -1,19 +1,39 @@
 package com.zj.gifsicle
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureConfig
+import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.listener.OnResultCallbackListener
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var pickGif: ActivityResultLauncher<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        pickGif = registerForActivityResult(ActivityResultContracts.GetContent()) {
+    }
 
-        }
+    fun selectGif(view: android.view.View) {
+        PictureSelector.create(this)
+            .openGallery(PictureMimeType.ofImage())
+            .isCamera(false)
+            .isGif(true)
+            .selectionMode(PictureConfig.SINGLE)
+            .imageEngine(GlideEngine.createGlideEngine())
+            .forResult(object : OnResultCallbackListener<LocalMedia> {
+                override fun onResult(result: List<LocalMedia>) {
+                    val intent = Intent(this@MainActivity, CompressActivity::class.java)
+                    intent.putExtra("local_media", result[0])
+                    startActivity(intent)
+                }
+
+                override fun onCancel() {
+                    // onCancel Callback
+                }
+            })
     }
 }

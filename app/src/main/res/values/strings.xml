@@ -1,8 +1,3 @@
 <resources>
     <string name="app_name">GifSicle</string>
-    <string name="export">导出</string>
-    <string name="handing">处理中...</string>
-    <string name="set_lossy">设置有损值</string>
-    <string name="set_color_number">设置输出GIF颜色数量</string>
-    <string name="set_resolution">设置分辨率</string>
 </resources>
